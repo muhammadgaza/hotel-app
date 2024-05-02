@@ -2,33 +2,33 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <form class="form-horizontal form-material mx-2">
+        <form class="form-horizontal form-material mx-2" action="{{ route('hotels.store')}}" method="POST">
+            @csrf
             <div class="form-group">
                 <label class="col-md-12">Name Hotel</label>
                 <div class="col-md-12">
-                    <input type="text" placeholder="Input name hotel"
-                        class="form-control form-control-line">
+                    <input type="text" placeholder="Input Name hotel"
+                        class="form-control form-control-line" name="name" id="name">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-12">Price</label>
                 <div class="col-md-12">
-                    <input type="number" placeholder="Input price   "
-                        class="form-control form-control-line" name="example-email"
-                        id="example-email">
+                    <input type="number" placeholder="Input price"
+                        class="form-control form-control-line" name="price" id="price">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-12">Room available</label>
                 <div class="col-md-12">
                     <input type="number" placeholder="Input room available"
-                        class="form-control form-control-line">
+                        class="form-control form-control-line" name="available" id="available">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-12">Descripton</label>
                 <div class="col-md-12">
-                    <textarea rows="5" class="form-control form-control-line"></textarea>
+                    <textarea rows="5" class="form-control form-control-line" name="description" id="description"></textarea>
                 </div>
             </div>
             {{-- <div class="form-group">

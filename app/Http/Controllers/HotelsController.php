@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hotel;
 use Illuminate\Http\Request;
 
 class HotelsController extends Controller
@@ -32,17 +33,19 @@ class HotelsController extends Controller
             'name' => 'required',
             'price' => 'required',
             'description' => 'required',
-            'available' => 'reuquired',
+            'available' => 'required',
         ]);
 
-        $hotel = Hotel::cretae(
-            [
-                'name' => $request->name,
-                'price' => $request->price,
-                'description' => $request->description,
-                'available' => $request->available,
-            ]
-        );
+        // $hotel = Hotel::create([
+        //         'name' => $request->name,
+        //         'price' => $request->price,
+        //         'description' => $request->description,
+        //         'available' => $request->available,
+        //     ]);
+
+        $hotel = Hotel::create($request->all());
+
+        
 
         return redirect()->route('dashboard/hotels');
 

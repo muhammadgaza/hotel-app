@@ -14,3 +14,4 @@ Route::get('/index', function () {
 //Hotels Page
 Route::get('/dashboard/hotels',[ HotelsController::class, 'index'])->name('hotels');
 Route::get('/dashboard/hotels/create',[ HotelsController::class, 'create'])->name('hotels.create');
+Route::post('/dashboard/hotels/store',[ HotelsController::class, 'store'])->name('hotels.store');
