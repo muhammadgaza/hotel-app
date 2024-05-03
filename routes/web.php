@@ -24,11 +24,6 @@ Route::middleware('guest')->group(function () {
 // AUTH (sudah login)
 Route::middleware('auth')->group(function () {
 
-    // Hotel
-    Route::get('/dashboard/hotels',[ HotelsController::class, 'index'])->name('hotels.index');
-    Route::get('/dashboard/hotels/create',[ HotelsController::class, 'create'])->name('hotels.create');
-    Route::post('/dashboard/hotels/store',[ HotelsController::class, 'store'])->name('hotels.store');
-
     // User
     Route::get('/dashboard/users', [UserController::class, 'index'])->name('users');
     Route::get('/dashboard/users/create', [UserController::class, 'create'])->name('users.create');
@@ -49,4 +44,11 @@ Route::middleware('auth')->group(function () {
 });
 
 
+Route::get('/dashboard/hotels',[ HotelsController::class, 'index'])->name('hotels');
+Route::get('/dashboard/hotels/create',[ HotelsController::class, 'create'])->name('hotels.create');
+Route::post('/dashboard/hotels/store',[ HotelsController::class, 'store'])->name('hotels.store');
+Route::get('/dashboard/hotels/edit/{id}',[ HotelsController::class, 'edit'])->name('hotels.edit');
+Route::patch('/dashboard/hotels/update/{id}',[ HotelsController::class, 'update'])->name('hotels.update');
+Route::delete('/dashboard/hotels/destroy/{id}', [ HotelsController::class, 'destroy'])->name('hotels.destroy');
+Route::patch("/dashboard/hotels/updateAvailable/{id}", [HotelsController::class, "updateAvailable"])->name("hotels.updateAvailable");
 
