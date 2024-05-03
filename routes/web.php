@@ -40,4 +40,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/dashboard/hotels',[ HotelsController::class, 'index'])->name('hotels');
 Route::get('/dashboard/hotels/create',[ HotelsController::class, 'create'])->name('hotels.create');
 Route::post('/dashboard/hotels/store',[ HotelsController::class, 'store'])->name('hotels.store');
+Route::get('/dashboard/hotels/edit/{id}',[ HotelsController::class, 'edit'])->name('hotels.edit');
+Route::patch('/dashboard/hotels/update/{id}',[ HotelsController::class, 'update'])->name('hotels.update');
+Route::delete('/dashboard/hotels/destroy/{id}', [ HotelsController::class, 'destroy'])->name('hotels.destroy');
+Route::patch("/dashboard/hotels/updateAvailable/{id}", [HotelsCoontroller::class, "updateAvailable"])->name("hotels.updateAvailable");
 

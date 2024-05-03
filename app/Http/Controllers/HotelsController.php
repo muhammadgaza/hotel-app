@@ -40,7 +40,7 @@ class HotelsController extends Controller
 
 
 
-        return redirect()->route('hotels.index')->with('success', 'Hotel created successfully.');
+        return redirect()->route('hotels')->with('success', 'Hotel created successfully.');
 
     }
 
@@ -57,7 +57,8 @@ class HotelsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $hotels = Hotel::find($id);
+        return view('pages.rooms.update', compact('hotels'));
     }
 
     /**
@@ -65,7 +66,24 @@ class HotelsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $hotel = Hotel::find($id);
+
+        $hotel->update([
+            'name' => $request->name,
+            'price' => $request->price,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->route('hotels')->with('success', 'Hotel updated successfully.');
+    }
+
+    public function updateAvailable(Request $request, $id)
+    {
+        $hotel = Hotel::find($id);
+
+        $hotel->update([
+            'available' => $request->available + $hotel->available,
+        ]);
     }
 
     /**
@@ -73,6 +91,8 @@ class HotelsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $hotel = Hotel::find($id);
+        $hotel->delete();
+        return redirect()->route('hotels')->with('success', 'Hotel deleted successfully.');
     }
 }
