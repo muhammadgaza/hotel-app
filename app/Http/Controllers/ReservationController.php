@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hotel;
+use App\Models\Booking;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
@@ -11,7 +14,8 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        
+        $reservations = Booking::all();
+        return view('pages.reservation.index', compact('reservations'));
     }
 
     /**
@@ -19,7 +23,8 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        //
+        $hotels = Hotel::all();
+        return view('pages.reservation.create', compact('hotels'));
     }
 
     /**
@@ -53,7 +58,7 @@ class ReservationController extends Controller
         // Create a new booking
         Booking::create($dataBooking);
 
-        return redirect()->route('hotels');
+        return redirect()->route('reservation.index');
     }
 
     /**
@@ -69,7 +74,9 @@ class ReservationController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $reservation = Booking::find($id);
+        $hotels = Hotel::all();
+        return view('pages.reservation.update', compact('reservation', 'hotels'));
     }
 
     /**
@@ -77,7 +84,23 @@ class ReservationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $reservation = Booking::find($id);
+        $customer = Customer::find($reservation->customer_id);
+
+        // Update Reservation
+        $reservation->hotel_id = $request->hotel_id;
+        $reservation->check_in = $request->check_in;
+        $reservation->check_out = $request->check_out;
+        $reservation->guests = $request->guests;
+        $reservation->save();
+
+        // Updatee Customer
+        $customer->name = $request->name;
+        $customer->addres = $request->address;
+        $customer->phone = $request->phone;
+        $customer->save();
+
+        return redirect()->route('reservation.index');
     }
 
     /**
@@ -85,6 +108,8 @@ class ReservationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $reservation = Booking::find($id);
+        $reservation->delete();
+        return redirect()->route('reservation.index');
     }
 }

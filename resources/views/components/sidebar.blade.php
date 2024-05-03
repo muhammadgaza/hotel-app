@@ -9,9 +9,9 @@
                             class="hide-menu">Dashboard</span></a></li>
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                         href="{{ route('hotels') }}" aria-expanded="false"><i
-                            class="mdi mdi-hotel"></i><span class="hide-menu">Rooms</span></a></li>
+                            class="mdi mdi-hotel"></i><span class="hide-menu">Hotel</span></a></li>
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                        href="table-basic.html" aria-expanded="false"><i class="mdi mdi-bookmark-plus-outline"></i><span
+                        href="{{route('reservation.index')}}" aria-expanded="false"><i class="mdi mdi-bookmark-plus-outline"></i><span
                             class="hide-menu">Reservasion</span></a></li>
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                         href="{{ route('users') }}" aria-expanded="false"><i class="mdi mdi-face"></i><span

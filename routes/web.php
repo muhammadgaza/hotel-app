@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HotelsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ReservationController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -46,17 +47,27 @@ Route::middleware('auth')->group(function () {
     // Staff
     Route::middleware('staff')->group(function() {
 
-        
+
 
     });
 });
 
+Route::prefix('dashboard')->group(function () {
+    Route::get('/reservation', [ReservationController::class, 'index'])->name('reservation.index');
+    Route::get('/reservation/create', [ReservationController::class, 'create'])->name('reservation.create');
+    Route::post('/reservation/store', [ReservationController::class, 'store'])->name('reservation.store');
+    Route::get('/reservation/edit/{id}', [ReservationController::class, 'edit'])->name('reservation.edit');
+    Route::patch('/reservation/update/{id}', [ReservationController::class, 'update'])->name('reservation.update');
+    Route::delete('/reservation/destroy/{id}', [ReservationController::class, 'destroy'])->name('reservation.destroy');
 
-Route::get('/dashboard/hotels',[ HotelsController::class, 'index'])->name('hotels');
-Route::get('/dashboard/hotels/create',[ HotelsController::class, 'create'])->name('hotels.create');
-Route::post('/dashboard/hotels/store',[ HotelsController::class, 'store'])->name('hotels.store');
-Route::get('/dashboard/hotels/edit/{id}',[ HotelsController::class, 'edit'])->name('hotels.edit');
-Route::patch('/dashboard/hotels/update/{id}',[ HotelsController::class, 'update'])->name('hotels.update');
-Route::delete('/dashboard/hotels/destroy/{id}', [ HotelsController::class, 'destroy'])->name('hotels.destroy');
-Route::patch("/dashboard/hotels/updateAvailable/{id}", [HotelsController::class, "updateAvailable"])->name("hotels.updateAvailable");
+    Route::get('/hotels',[ HotelsController::class, 'index'])->name('hotels');
+    Route::get('/hotels/create',[ HotelsController::class, 'create'])->name('hotels.create');
+    Route::post('/hotels/store',[ HotelsController::class, 'store'])->name('hotels.store');
+    Route::get('/hotels/edit/{id}',[ HotelsController::class, 'edit'])->name('hotels.edit');
+    Route::patch('/hotels/update/{id}',[ HotelsController::class, 'update'])->name('hotels.update');
+    Route::delete('/hotels/destroy/{id}', [ HotelsController::class, 'destroy'])->name('hotels.destroy');
+    Route::patch("/hotels/updateAvailable/{id}", [HotelsController::class, "updateAvailable"])->name("hotels.updateAvailable");
+});
+
+
 
