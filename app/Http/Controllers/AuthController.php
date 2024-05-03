@@ -21,7 +21,7 @@ class AuthController extends Controller
 
         if(Auth::attempt($req)){
             $request->session()->regenerate();
-            return redirect()->route('dashboard'); // Berhasil
+            return redirect()->route('hotels.index'); // Berhasil
         }
         return redirect()->route('login'); // gagal
     }

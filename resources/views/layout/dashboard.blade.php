@@ -44,7 +44,7 @@
                                   <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                                 </ol>
                               </nav>
-                            <h1 class="mb-0 fw-bold">Dashboard</h1> 
+                            <h1 class="mb-0 fw-bold">Dashboard</h1>
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                 </div>
             </div>
     </div>
-    
+
 
     <script src="{{ asset('assets/libs/jquery/dist/jquery.min.js')}}"></script>
     <!-- Bootstrap tether Core JavaScript -->

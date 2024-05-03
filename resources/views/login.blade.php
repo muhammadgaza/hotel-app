@@ -31,14 +31,15 @@
                         <div class="card-body">
                             <h3>Log In Form</h3>
                             <form action="{{ route('login.store') }}" method="POST">
-                                <input type="hidden" name="_token" value="yLfcjZfW74y7Tf0mD8zsCqu6NqV8ewZqCb0gmyHs" autocomplete="off">                                <div class="mb-3">
+                                @csrf
+                                <div class="mb-4">
                                     <label for="exampleInputEmail1" class="form-label">Email</label>
                                     <input type="email" name="email" value="" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                                                    </div>
+                                </div>
                                 <div class="mb-4">
                                     <label for="exampleInputPassword1" class="form-label">Password</label>
                                     <input type="password" name="password" value="" class="form-control" id="exampleInputPassword1">
-                                                                    </div>
+                                </div>
                                 <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Log In</button>
                             </form>
                         </div>

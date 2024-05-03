@@ -14,7 +14,7 @@
                         href="table-basic.html" aria-expanded="false"><i class="mdi mdi-bookmark-plus-outline"></i><span
                             class="hide-menu">Reservasion</span></a></li>
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                        href="icon-material.html" aria-expanded="false"><i class="mdi mdi-face"></i><span
+                        href="{{ route('users') }}" aria-expanded="false"><i class="mdi mdi-face"></i><span
                             class="hide-menu">Users</span></a></li>
             </ul>
 
