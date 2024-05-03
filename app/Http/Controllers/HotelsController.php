@@ -36,13 +36,6 @@ class HotelsController extends Controller
             'available' => 'required',
         ]);
 
-        // $hotel = Hotel::create([
-        //         'name' => $request->name,
-        //         'price' => $request->price,
-        //         'description' => $request->description,
-        //         'available' => $request->available,
-        //     ]);
-
         $hotel = Hotel::create($request->all());
 
         
