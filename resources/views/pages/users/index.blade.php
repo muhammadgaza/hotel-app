@@ -25,10 +25,14 @@
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->role }}</td>
                             <td>
-                                <a href="#" class="btn btn-warning">Edit</a>
-                                <form action="#" method="post">
+                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary mdi mdi-grease-pencil"> Update</a>
+
+                                <form action="{{ route('hotels.destroy', $user->id) }}" method="POST"
+                                    class="d-inline">
+                                    @method('DELETE')
                                     @csrf
-                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    <button type="submit" class="btn btn-danger"><i
+                                            class="mdi mdi-delete"></i>Delete</button>
                                 </form>
                             </td>
                         </tr>

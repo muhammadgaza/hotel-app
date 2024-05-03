@@ -24,16 +24,22 @@ Route::middleware('guest')->group(function () {
 // AUTH (sudah login)
 Route::middleware('auth')->group(function () {
 
-    // User
-    Route::get('/dashboard/users', [UserController::class, 'index'])->name('users');
-    Route::get('/dashboard/users/create', [UserController::class, 'create'])->name('users.create');
-    Route::post('/dashboard/users/store', [UserController::class, 'store'])->name('users.store');
+   Route::get('/dashboard', function () {
+       return view('index');
+   })->name('dashboard');
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     // Admin
     Route::middleware('admin')->group(function () {
-        //Hotels Page
+    
+    //Users page
+    Route::get('/dashboard/users', [UserController::class, 'index'])->name('users');
+    Route::get('/dashboard/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/dashboard/users/store', [UserController::class, 'store'])->name('users.store');
+    Route::get('/dashboard/users/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
+    Route::patch('/dashboard/users/update/{id}', [UserController::class, 'update'])->name('users.update');
+    // Route::delete('/dashboard/users/destroy/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 
     });
 

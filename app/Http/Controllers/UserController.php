@@ -35,4 +35,27 @@ class UserController extends Controller
         }
         return back();
     }
+
+    public function edit($id)
+    {
+        $user = User::find($id);
+        return view('pages.users.update', compact('user'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        if ($request->has('password') && $request->password !== null) {
+            $password = bcrypt($request->password); 
+        } else {
+            $password = $user->password; // Keep the existing password
+        }
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $password,
+        ]);
+    }
 }
