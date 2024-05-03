@@ -23,6 +23,16 @@ Route::middleware('guest')->group(function () {
 // AUTH (sudah login)
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    // Admin
+    Route::middleware('admin')->group(function () {
+
+    });
+
+    // Staff
+    Route::middleware('staff')->group(function() {
+        
+    });
 });
 
 //Hotels Page
