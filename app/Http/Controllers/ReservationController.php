@@ -27,7 +27,33 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Check if the request is empty
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+        ]);
+
+        // Create a new customer
+        $dataCustomer = Customer::create([
+            'name' => $request->name,
+            'addres' => $request->address,
+            'phone' => $request->phone,
+        ]);
+
+        $dataBooking = $request->validate([
+            'hotel_id' => 'required',
+            'check_in' => 'required',
+            'check_out' => 'required',
+            'guests' => 'required',
+        ]);
+
+        $dataBooking['customer_id'] = $dataCustomer->id;
+
+        // Create a new booking
+        Booking::create($dataBooking);
+
+        return redirect()->route('hotels');
     }
 
     /**
