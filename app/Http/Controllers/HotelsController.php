@@ -40,7 +40,7 @@ class HotelsController extends Controller
 
 
 
-        return redirect()->route('hotels.create');
+        return redirect()->route('hotels.index')->with('success', 'Hotel created successfully.');
 
     }
 
