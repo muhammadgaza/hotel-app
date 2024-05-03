@@ -46,6 +46,8 @@ Route::middleware('auth')->group(function () {
     // Staff
     Route::middleware('staff')->group(function() {
 
+        
+
     });
 });
 
