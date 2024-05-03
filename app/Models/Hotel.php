@@ -10,6 +10,6 @@ class Hotel extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'. 'price', 'description', 'available'
+        'name', 'price', 'description', 'available'
     ];
 }
