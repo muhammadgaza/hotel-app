@@ -50,6 +50,9 @@ class ReservationController extends Controller
 
         $dataBooking['customer_id'] = $dataCustomer->id;
 
+        // Create a new booking
+        Booking::create($dataBooking);
+
         return redirect()->route('hotels');
     }
 
