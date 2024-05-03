@@ -38,9 +38,9 @@ class HotelsController extends Controller
 
         $hotel = Hotel::create($request->all());
 
-        
 
-        return redirect()->route('dashboard/hotels');
+
+        return redirect()->route('hotels.create');
 
     }
 
