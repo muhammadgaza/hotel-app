@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthController extends Controller
 {
@@ -21,8 +22,10 @@ class AuthController extends Controller
 
         if(Auth::attempt($req)){
             $request->session()->regenerate();
+            Alert::success('Success', 'Login successfully');
             return redirect()->route('hotels'); // Berhasil
         }
+        Alert::error('Failed', 'Login failed');
         return redirect()->route('login'); // gagal
     }
 
@@ -31,6 +34,7 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+        Alert::success('Success', 'Logout successfully');
         return redirect()->route('login');
     }
 

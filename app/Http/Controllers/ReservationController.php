@@ -8,6 +8,7 @@ use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Exports\ReservationExport;
 use Maatwebsite\Excel\Facades\Excel;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ReservationController extends Controller
 {
@@ -61,9 +62,14 @@ class ReservationController extends Controller
         $dataBooking['customer_id'] = $dataCustomer->id;
 
         // Create a new booking
-        Booking::create($dataBooking);
+        $booking = Booking::create($dataBooking);
+        if($booking) {
+            Alert::success('Success', 'Reservation created successfully!');
+            return redirect()->route('reservation.index');
+        }
+        Alert::error('Failed', 'Reservation creation failed!');
+        return back();
 
-        return redirect()->route('reservation.index');
     }
 
     /**
@@ -105,6 +111,7 @@ class ReservationController extends Controller
         $customer->phone = $request->phone;
         $customer->save();
 
+        Alert::success('Success', 'Reservation updated successfully!');
         return redirect()->route('reservation.index');
     }
 
@@ -115,6 +122,7 @@ class ReservationController extends Controller
     {
         $reservation = Booking::find($id);
         $reservation->delete();
+        Alert::success('Success', 'Reservation deleted successfully!');
         return redirect()->route('reservation.index');
     }
 

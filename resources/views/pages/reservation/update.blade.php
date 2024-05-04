@@ -21,7 +21,7 @@
             <div class="card-body">
                 <h4 class="card-title">Edit Reservation</h4>
                     <div class="form-group">
-                        <label class="col-md-12">Name Hotel</label>
+                        <label class="col-md-12"> Hotel</label>
                         <div class="col-md-12">
                             <select name="hotel_id" class="form-control form-control-line" required>
                                 @foreach ($hotels as $hotel)
@@ -31,23 +31,23 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-12">Tanggal Check In</label>
+                        <label class="col-md-12"> Check In</label>
                         <div class="col-md-12">
-                            <input type="date" placeholder="Input Tanggal Check In"
+                            <input type="date" placeholder="Input Check In"
                                 class="form-control form-control-line" value="{{$reservation->check_in}}" name="check_in" id="price" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-12">Tanggal Check Out</label>
+                        <label class="col-md-12"> Check Out</label>
                         <div class="col-md-12">
-                            <input type="date" placeholder="Input Tanggal Check Our"
+                            <input type="date" placeholder="Input Check Our"
                                 class="form-control form-control-line" value="{{$reservation->check_out}}" name="check_out" id="available" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-12">Jumlah Tamu</label>
+                        <label class="col-md-12">Guest</label>
                         <div class="col-md-12">
-                            <input type="number" placeholder="Input Jumlah Tamu"
+                            <input type="number" placeholder="Input Guest"
                                 class="form-control form-control-line" value="{{$reservation->guests}}" name="guests" id="name" required>
                         </div>
                     </div>

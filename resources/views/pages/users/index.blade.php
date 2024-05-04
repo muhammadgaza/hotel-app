@@ -2,9 +2,11 @@
 @section('content')
 <div class="col-12">
     <div class="card">
-        <div class="card-body row">
-            <h4 class="card-title">Data User</h4>
-            <a href="{{ route('users.create') }}" class="btn btn-success">Add user</a>
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <h4 class="card-title">Data User</h4>
+                <a href="{{ route('users.create') }}" class="btn btn-success">Add user</a>
+            </div>
         </div>
         <div class="table-responsive">
             <table class="table table-bordered">

@@ -44,7 +44,7 @@
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-between">
-                <h4 class="card-title">Data Reservations</h4>
+                <h4 class="card-title">Data Reservation</h4>
                 <form action="{{ route('reservation.index') }}" class="row" method="get">
                     @csrf
                     <div class="col-10">
@@ -61,9 +61,11 @@
                     @endif
                     <button type="submit" class="btn btn-success d-flex">Export</button>
                 </form>
+                @if(Auth::user()->role == 'staff')
                 <a href="{{route('reservation.create')}}" class="btn btn-primary">
                     Add Reservation
                 </a>
+                @endif
             </div>
         </div>
         <div class="table-responsive">
@@ -76,7 +78,9 @@
                         <th scope="col">Check In</th>
                         <th scope="col">Check Out</th>
                         <th scope="col">Jumlah Tamu</th>
-                        <th scope="col">Action</th>
+                        @if(Auth::user()->role == 'staff')
+                            <th scope="col">Action</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -93,6 +97,7 @@
                         <td>{{ $reservation->check_in }}</td>
                         <td>{{ $reservation->check_out }}</td>
                         <td>{{ $reservation->guests }}</td>
+                        @if(Auth::user()->role == 'staff')
                         <td>
                             <a href="{{ route('reservation.edit', $reservation->id) }}" class="btn btn-primary mdi mdi-grease-pencil"> Update</a>
                             <form action="{{ route('reservation.destroy', $reservation->id) }}" method="POST"
@@ -103,6 +108,7 @@
                                         class="mdi mdi-delete"></i>Delete</button>
                             </form>
                         </td>
+                        @endif
                     </tr>
                     @endforeach
                 </tbody>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Hotel;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class HotelsController extends Controller
 {
@@ -36,12 +37,13 @@ class HotelsController extends Controller
             'available' => 'required',
         ]);
 
-        $hotel = Hotel::create($request->all());
+        if($hotel = Hotel::create($request->all())){
+            Alert::success('Success', 'Hotel created successfully!');
+            return redirect()->route('hotels')->with('success', 'Hotel created successfully.');
+        }
 
-
-
-        return redirect()->route('hotels')->with('success', 'Hotel created successfully.');
-
+        Alert::error('Error', 'Hotel not created!');
+        return back()->with('error', 'Hotel not created.');
     }
 
     /**
@@ -68,13 +70,18 @@ class HotelsController extends Controller
     {
         $hotel = Hotel::find($id);
 
-        $hotel->update([
+        $update = $hotel->update([
             'name' => $request->name,
             'price' => $request->price,
             'description' => $request->description,
         ]);
+        if($update){
+            Alert::success('Success', 'Hotel updated successfully!');
+            return redirect()->route('hotels')->with('success', 'Hotel updated successfully.');
+        }
 
-        return redirect()->route('hotels')->with('success', 'Hotel updated successfully.');
+        Alert::error('Error', 'Hotel not updated!');
+        return back()->with('error', 'Hotel not updated.');
     }
 
     public function updateAvailable(Request $request, $id)
@@ -93,6 +100,7 @@ class HotelsController extends Controller
     {
         $hotel = Hotel::find($id);
         $hotel->delete();
-        return redirect()->route('hotels')->with('success', 'Hotel deleted successfully.');
+        Alert::success('Success', 'Hotel deleted successfully!');
+        return redirect()->route('hotels');
     }
 }

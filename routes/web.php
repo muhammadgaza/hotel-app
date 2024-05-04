@@ -52,11 +52,11 @@ Route::middleware('auth')->group(function () {
     
 });
 
+    Route::get('/dashboard/reservation', [ReservationController::class, 'index'])->name('reservation.index');
     Route::get('/dashboard/hotels',[ HotelsController::class, 'index'])->name('hotels');
 
 // Staff
 Route::middleware('staff')->prefix('dashboard')->group(function() {
-        Route::get('/reservation', [ReservationController::class, 'index'])->name('reservation.index');
         Route::get('/reservation/create', [ReservationController::class, 'create'])->name('reservation.create');
         Route::post('/reservation/store', [ReservationController::class, 'store'])->name('reservation.store');
         Route::get('/reservation/edit/{id}', [ReservationController::class, 'edit'])->name('reservation.edit');

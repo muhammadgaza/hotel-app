@@ -37,6 +37,7 @@
             <div class="page-wrapper">
                 <div class="container-fluid">
                     <div class="row">
+                        @include('sweetalert::alert')
                         @yield('content')
                     </div>
                 </div>
