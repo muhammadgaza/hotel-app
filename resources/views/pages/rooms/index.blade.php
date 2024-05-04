@@ -53,7 +53,9 @@
                         <th scope="col">Price</th>
                         <th scope="col">Available Rooms</th>
                         <th scope="col">Description</th>
+                        @if(Auth::user()->role == 'admin')
                         <th scope="col">Action</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -64,6 +66,7 @@
                         <td>{{ $hotel->price }}</td>
                         <td>{{ $hotel->available }}</td>
                         <td>{{ $hotel->description }}</td>
+                        @if(Auth::user()->role == 'admin')
                         <td>
                             <a href="{{ route('hotels.edit', $hotel->id) }}" class="btn btn-primary mdi mdi-grease-pencil"> Update</a>
                             <button type="button" class="btn btn-primary btn-update-available"
@@ -78,6 +81,7 @@
                                         class="mdi mdi-delete"></i>Delete</button>
                             </form>
                         </td>
+                        @endif
                     </tr>
                     @endforeach
                 </tbody>

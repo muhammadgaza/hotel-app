@@ -45,6 +45,22 @@
         <div class="card-body">
             <div class="d-flex justify-content-between">
                 <h4 class="card-title">Data Reservations</h4>
+                <form action="{{ route('reservation.index') }}" class="row" method="get">
+                    @csrf
+                    <div class="col-10">
+                        <input type="date" name="search" class="form-control">
+                    </div>
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-info d-flex">sort</button>
+                    </div>
+                </form>
+                <form action="{{ route('reservation.export') }}" method="get">
+                    @csrf
+                    @if(request('search'))
+                    <input type="text" name="search" value="{{ request('search') }}" hidden>
+                    @endif
+                    <button type="submit" class="btn btn-success d-flex">Export</button>
+                </form>
                 <a href="{{route('reservation.create')}}" class="btn btn-primary">
                     Add Reservation
                 </a>
@@ -64,6 +80,11 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if($reservations->count() == 0)
+                    <tr>
+                        <td colspan="7" class="text-center">No Reservation</td>
+                    </tr>
+                    @endif
                     @foreach ($reservations as $reservation)
                     <tr>
                         <th scope="row">{{ $loop->iteration }}</th>

@@ -6,15 +6,20 @@ use App\Models\Hotel;
 use App\Models\Booking;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use App\Exports\ReservationExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ReservationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $reservations = Booking::all();
+        $reservations = Booking::orderBy('created_at', 'desc')->get();
+        if($request->search){
+            $reservations = Booking::where('check_in', $request->search)->orderBy('created_at', 'desc')->get();
+        }
         return view('pages.reservation.index', compact('reservations'));
     }
 
@@ -111,5 +116,10 @@ class ReservationController extends Controller
         $reservation = Booking::find($id);
         $reservation->delete();
         return redirect()->route('reservation.index');
+    }
+
+    public function export() 
+    {
+        return Excel::download(new ReservationExport, now().'-reservation.xlsx');
     }
 }
